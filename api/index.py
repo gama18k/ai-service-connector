@@ -49,9 +49,12 @@ def webhook_route():
         #         }
         #     ]
         # }
+        # payload = {
+        #     "input": user_message,
+        #     "context": context
+        # }
         payload = {
-            "input": user_message,
-            "context": context
+            "input_data": [user_message, context]
         }
         response = requests.post(url_watsonx, headers=headers, json=payload)
         
@@ -72,6 +75,7 @@ def webhook_route():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
+
 
 
 
