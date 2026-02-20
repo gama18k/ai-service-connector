@@ -53,8 +53,17 @@ def webhook_route():
         #     "input": user_message,
         #     "context": context
         # }
+        # payload = {
+        #     "input_data": [user_message, context]
+        # }
+        # Formato EXATO exigido por deployments gerados via Prompt Lab
         payload = {
-            "input_data": [user_message, context]
+            "input_data": [
+                {
+                    "fields": ["question"],
+                    "values": [[user_message]]
+                }
+            ]
         }
         response = requests.post(url_watsonx, headers=headers, json=payload)
         
@@ -75,6 +84,7 @@ def webhook_route():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
+
 
 
 
