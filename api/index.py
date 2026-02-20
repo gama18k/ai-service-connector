@@ -98,7 +98,7 @@ def webhook_route():
         return "Webhook RAG está Online!", 200
 
     # COLOQUE SUA NOVA CHAVE AQUI
-    api_key = "SUA_NOVA_API_KEY_AQUI" 
+    api_key = "bmajj8krZddh16ifk0ymnVdqzeamOL1JZ9dd0lC_v5c0" 
     
     # URL de INFORMAÇÃO do deployment (Note que tirei o /ai_service do final)
     deploy_info_url = "https://au-syd.ml.cloud.ibm.com/ml/v4/deployments/962b8cc9-8697-46de-8452-ea01935d77d5?version=2021-05-01"
@@ -128,6 +128,7 @@ def webhook_route():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
+
 
 
 
