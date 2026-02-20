@@ -9,7 +9,7 @@ def webhook_route():
     if request.method == 'GET':
         return "Webhook RAG está Online!", 200
 
-    api_key = "htVumjBHrdw_0JMZ1TJCZnn0ZKf2ew9OP4QBAGNr32R9"
+    api_key = "bmajj8krZddh16ifk0ymnVdqzeamOL1JZ9dd0lC_v5c0"
     url_watsonx = "https://au-syd.ml.cloud.ibm.com/ml/v4/deployments/962b8cc9-8697-46de-8452-ea01935d77d5/ai_service?version=2021-05-01"
     
     # 1. Pega o JSON cru que o Watson Assistant enviou
@@ -61,3 +61,4 @@ def webhook_route():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
+
