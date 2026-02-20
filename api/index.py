@@ -40,8 +40,15 @@ def webhook_route():
 
         # Chamada WatsonX
         headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
-        payload = {"input_data": [{"values": [[user_message, context]]}]}
-
+# Adicionamos os "fields" para o RAG saber quem é quem
+        payload = {
+            "input_data": [
+                {
+                    "fields": ["input", "context"],
+                    "values": [[user_message, context]]
+                }
+            ]
+        }
         response = requests.post(url_watsonx, headers=headers, json=payload)
         
         if response.status_code != 200:
@@ -61,5 +68,6 @@ def webhook_route():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
+
 
 
