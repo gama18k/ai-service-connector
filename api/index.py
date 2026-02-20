@@ -3,12 +3,10 @@ import requests
 
 app = Flask(__name__)
 
-# A Vercel precisa que o objeto 'app' esteja no escopo global
-# e que as rotas apontem para o caminho correto.
-
+# Mudamos o nome da função de "handler" para "webhook_route" para a Vercel não bugar
 @app.route('/api/index', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
-def handler():
+def webhook_route():
     if request.method == 'GET':
         return "Webhook RAG está Online!", 200
 
@@ -53,6 +51,3 @@ def handler():
 
     except Exception as e:
         return jsonify({"response": f"Erro interno: {str(e)}"}), 200
-
-# NÃO use app.run() aqui para a Vercel.
-# O objeto 'app' definido acima já é o suficiente.
